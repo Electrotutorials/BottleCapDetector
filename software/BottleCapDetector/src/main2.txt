@@ -1,0 +1,186 @@
+#include <Arduino.h>
+#include <OneButton.h>
+
+#define BOTTLE_DETECTION_LED_PIN 2
+#define CAP_DETECTION_LED_PIN 3
+#define ALARM_LED_PIN 4
+#define RESET_BUTTON_PIN 5
+#define INDUCTION_SENSOR_PIN 6
+#define LIGHT_SENSOR_PIN 7
+#define ALARM_RELAY_PIN 8
+
+#define MAX_ERRORS 3
+
+int NrOfErrors;
+bool bottleDetected;
+bool capDetected;
+bool alarm;
+bool buttonPressed;
+OneButton button(RESET_BUTTON_PIN, true);
+
+enum ledStates
+{
+  OFF,
+  ON
+};
+
+
+bool detectBottle()
+{
+  if (digitalRead(LIGHT_SENSOR_PIN) == 1)
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+}
+
+bool detectCap()
+{
+  if (digitalRead(INDUCTION_SENSOR_PIN) == 0)
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
+}
+
+void setBottleLED(ledStates state)
+{
+  if (state == OFF)
+  {
+    digitalWrite(BOTTLE_DETECTION_LED_PIN, LOW);
+  }
+  else
+  {
+    digitalWrite(BOTTLE_DETECTION_LED_PIN, HIGH);
+  }
+}
+
+void setCapLED(ledStates state)
+{
+  if (state == OFF)
+  {
+    digitalWrite(CAP_DETECTION_LED_PIN, LOW);
+  }
+  else
+  {
+    digitalWrite(CAP_DETECTION_LED_PIN, HIGH);
+  }
+}
+
+void setAlarmLED(ledStates state)
+{
+  if (state == OFF)
+  {
+    digitalWrite(ALARM_LED_PIN, LOW);
+  }
+  else
+  {
+    digitalWrite(ALARM_LED_PIN, HIGH);
+  }
+}
+
+void setAlarmRelay(ledStates state)
+{
+  if (state == OFF)
+  {
+    digitalWrite(ALARM_RELAY_PIN, LOW);
+  }
+  else
+  {
+    digitalWrite(ALARM_RELAY_PIN, HIGH);
+  }
+}
+
+void buttonLongPress()
+{
+    buttonPressed = true;
+}
+
+void initParameters() {
+  NrOfErrors = 0;
+  bottleDetected = false;
+  capDetected = false;
+  alarm = false;
+  buttonPressed = false;
+
+  setBottleLED(OFF);
+  setCapLED(OFF);
+  setAlarmLED(OFF);
+  setAlarmRelay(OFF);
+}
+
+void setup()
+{
+  Serial.begin(115200);
+
+  pinMode(INDUCTION_SENSOR_PIN, INPUT);
+  pinMode(LIGHT_SENSOR_PIN, INPUT);
+  pinMode(BOTTLE_DETECTION_LED_PIN, OUTPUT);
+  pinMode(CAP_DETECTION_LED_PIN, OUTPUT);
+  pinMode(ALARM_LED_PIN, OUTPUT);
+  pinMode(ALARM_RELAY_PIN, OUTPUT);
+  pinMode(RESET_BUTTON_PIN, INPUT_PULLUP);
+
+  button.attachLongPressStart(buttonLongPress);
+
+  initParameters();
+}
+
+void loop()
+{
+  button.tick();
+  //We mogen enkel beginnen als er geen alarm is
+  if (!alarm)
+  {
+    //We beginnen pas als een fles gedetecteerd is
+    if (detectBottle())
+    {
+      button.tick();
+      //Hou bij dat de fles gedetecteerd is
+      bottleDetected = true;
+      //Veronderstel dat op dit moment nog geen kroonkurk gedetecteerd is
+      capDetected = false;
+      //SChakel de fles detectie LED aan
+      setBottleLED(ON);
+      //We starten een loop die loopt zolang de fles gedetecteerd is
+      while (detectBottle())
+      {
+        //check of een kroonkurk gedetecteerd is
+        if (detectCap())
+        {
+          //Hou bij dat de kroonkurk gedetecteerd is
+          capDetected = true;
+          //Schakel de kroonkurk detect LED aan
+          setCapLED(ON);
+        }
+      }
+      //De fles is voorbij, is er een kroonkurk gedetecteerd?
+      if (!capDetected)
+      {
+        //Er is geen kroonkurk gedetecteerd geweest, Hou het aantal bij
+        NrOfErrors = NrOfErrors + 1;
+      }
+      //Is het maximum aantal fouten bereikt?
+      if (NrOfErrors >= MAX_ERRORS)
+      {
+        //Hou bij dat het alarm gegeven wordt
+        alarm = true;
+        //Schakel de alarm LED aan
+        setAlarmLED(ON);
+        //Schakel de noodstop relais aan
+        setAlarmRelay(ON);
+      }
+    }
+  } else {
+    //We are in an alarm state. Wait till reset button is pressed for at least 1 second
+    if (buttonPressed) {
+      initParameters();
+    }
+  }
+}
