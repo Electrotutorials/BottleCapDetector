@@ -1,0 +1,708 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title "Bottle Cap detector"
+Date "2020-04-26"
+Rev "1.1"
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L MCU_Module:Arduino_UNO_R3 A1
+U 1 1 5E8623DD
+P 6250 2900
+F 0 "A1" H 6250 4081 50  0000 C CNN
+F 1 "Arduino_UNO_R3" H 6250 3990 50  0000 C CNN
+F 2 "Module:Arduino_UNO_R3" H 6250 2900 50  0001 C CIN
+F 3 "https://www.arduino.cc/en/Main/arduinoBoardUno" H 6250 2900 50  0001 C CNN
+	1    6250 2900
+	1    0    0    -1  
+$EndComp
+$Comp
+L Regulator_Linear:LM317_3PinPackage U1
+U 1 1 5E863A03
+P 2750 2250
+F 0 "U1" H 2750 2492 50  0000 C CNN
+F 1 "LM317_3PinPackage" H 2750 2401 50  0000 C CNN
+F 2 "" H 2750 2500 50  0001 C CIN
+F 3 "http://www.ti.com/lit/ds/symlink/lm317.pdf" H 2750 2250 50  0001 C CNN
+	1    2750 2250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R4
+U 1 1 5E864423
+P 3150 2650
+F 0 "R4" H 3220 2696 50  0000 L CNN
+F 1 "220R" H 3220 2605 50  0000 L CNN
+F 2 "" V 3080 2650 50  0001 C CNN
+F 3 "~" H 3150 2650 50  0001 C CNN
+	1    3150 2650
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR04
+U 1 1 5E8664B0
+P 1550 3800
+F 0 "#PWR04" H 1550 3550 50  0001 C CNN
+F 1 "GND" H 1555 3627 50  0000 C CNN
+F 2 "" H 1550 3800 50  0001 C CNN
+F 3 "" H 1550 3800 50  0001 C CNN
+	1    1550 3800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2750 3800 2250 3800
+Wire Wire Line
+	2750 3400 2750 3800
+$Comp
+L Device:R_Variable R3
+U 1 1 5E864CFB
+P 2750 3250
+F 0 "R3" H 2878 3296 50  0000 L CNN
+F 1 "5K" H 2878 3205 50  0000 L CNN
+F 2 "" V 2680 3250 50  0001 C CNN
+F 3 "~" H 2750 3250 50  0001 C CNN
+	1    2750 3250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3150 2800 2750 2800
+Wire Wire Line
+	2750 2550 2750 2800
+Connection ~ 2750 2800
+Wire Wire Line
+	2750 2800 2750 3100
+$Comp
+L power:+5V #PWR05
+U 1 1 5E8688D7
+P 4150 2250
+F 0 "#PWR05" H 4150 2100 50  0001 C CNN
+F 1 "+5V" H 4165 2423 50  0000 C CNN
+F 2 "" H 4150 2250 50  0001 C CNN
+F 3 "" H 4150 2250 50  0001 C CNN
+	1    4150 2250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3150 2500 3150 2250
+Wire Wire Line
+	3050 2250 3150 2250
+Connection ~ 3150 2250
+Wire Wire Line
+	3150 2250 3550 2250
+$Comp
+L Device:CP C1
+U 1 1 5E86993D
+P 2250 3050
+F 0 "C1" H 2368 3096 50  0000 L CNN
+F 1 "0.1µF" H 2368 3005 50  0000 L CNN
+F 2 "" H 2288 2900 50  0001 C CNN
+F 3 "~" H 2250 3050 50  0001 C CNN
+	1    2250 3050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2250 2900 2250 2250
+Wire Wire Line
+	2250 2250 2450 2250
+Wire Wire Line
+	2250 3200 2250 3800
+Connection ~ 2250 3800
+Wire Wire Line
+	2250 3800 1750 3800
+$Comp
+L Device:CP C2
+U 1 1 5E86A6C3
+P 3550 2900
+F 0 "C2" H 3668 2946 50  0000 L CNN
+F 1 "1µF" H 3668 2855 50  0000 L CNN
+F 2 "" H 3588 2750 50  0001 C CNN
+F 3 "~" H 3550 2900 50  0001 C CNN
+	1    3550 2900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3550 2750 3550 2250
+Connection ~ 3550 2250
+Wire Wire Line
+	3550 3050 3550 3800
+Wire Wire Line
+	3550 3800 2750 3800
+Connection ~ 2750 3800
+$Comp
+L Device:D D2
+U 1 1 5E86BC1C
+P 1950 2250
+F 0 "D2" H 1950 2034 50  0000 C CNN
+F 1 "1N4001" H 1950 2125 50  0000 C CNN
+F 2 "" H 1950 2250 50  0001 C CNN
+F 3 "~" H 1950 2250 50  0001 C CNN
+	1    1950 2250
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	2100 2250 2250 2250
+Connection ~ 2250 2250
+Wire Wire Line
+	1800 2250 1750 2250
+$Comp
+L power:PWR_FLAG #FLG01
+U 1 1 5E86CDFD
+P 800 800
+F 0 "#FLG01" H 800 875 50  0001 C CNN
+F 1 "PWR_FLAG" H 800 973 50  0000 C CNN
+F 2 "" H 800 800 50  0001 C CNN
+F 3 "~" H 800 800 50  0001 C CNN
+	1    800  800 
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR01
+U 1 1 5E86DD87
+P 800 950
+F 0 "#PWR01" H 800 700 50  0001 C CNN
+F 1 "GND" H 805 777 50  0000 C CNN
+F 2 "" H 800 950 50  0001 C CNN
+F 3 "" H 800 950 50  0001 C CNN
+	1    800  950 
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:PWR_FLAG #FLG02
+U 1 1 5E86E871
+P 1250 800
+F 0 "#FLG02" H 1250 875 50  0001 C CNN
+F 1 "PWR_FLAG" H 1250 973 50  0000 C CNN
+F 2 "" H 1250 800 50  0001 C CNN
+F 3 "~" H 1250 800 50  0001 C CNN
+	1    1250 800 
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+24V #PWR02
+U 1 1 5E86F040
+P 1250 950
+F 0 "#PWR02" H 1250 800 50  0001 C CNN
+F 1 "+24V" H 1265 1123 50  0000 C CNN
+F 2 "" H 1250 950 50  0001 C CNN
+F 3 "" H 1250 950 50  0001 C CNN
+	1    1250 950 
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	1250 800  1250 950 
+Wire Wire Line
+	800  800  800  950 
+$Comp
+L power:+5V #PWR07
+U 1 1 5E87544B
+P 6450 1550
+F 0 "#PWR07" H 6450 1400 50  0001 C CNN
+F 1 "+5V" H 6465 1723 50  0000 C CNN
+F 2 "" H 6450 1550 50  0001 C CNN
+F 3 "" H 6450 1550 50  0001 C CNN
+	1    6450 1550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6450 1550 6450 1900
+$Comp
+L power:+24V #PWR03
+U 1 1 5E876C45
+P 1250 2250
+F 0 "#PWR03" H 1250 2100 50  0001 C CNN
+F 1 "+24V" H 1265 2423 50  0000 C CNN
+F 2 "" H 1250 2250 50  0001 C CNN
+F 3 "" H 1250 2250 50  0001 C CNN
+	1    1250 2250
+	1    0    0    -1  
+$EndComp
+NoConn ~ 6350 1900
+NoConn ~ 6150 1900
+NoConn ~ 6750 2300
+NoConn ~ 6750 2500
+NoConn ~ 6750 2700
+NoConn ~ 6750 2900
+NoConn ~ 6750 3000
+NoConn ~ 6750 3100
+NoConn ~ 6750 3200
+NoConn ~ 6750 3300
+NoConn ~ 6750 3400
+NoConn ~ 6750 3600
+NoConn ~ 6750 3700
+$Comp
+L power:GND #PWR06
+U 1 1 5E87D6DD
+P 6250 4250
+F 0 "#PWR06" H 6250 4000 50  0001 C CNN
+F 1 "GND" H 6255 4077 50  0000 C CNN
+F 2 "" H 6250 4250 50  0001 C CNN
+F 3 "" H 6250 4250 50  0001 C CNN
+	1    6250 4250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6250 4250 6250 4150
+Wire Wire Line
+	6150 4000 6150 4150
+Wire Wire Line
+	6150 4150 6250 4150
+Connection ~ 6250 4150
+Wire Wire Line
+	6250 4150 6250 4000
+Wire Wire Line
+	6350 4000 6350 4150
+Wire Wire Line
+	6350 4150 6250 4150
+NoConn ~ 5750 2300
+NoConn ~ 5750 2400
+NoConn ~ 5750 3200
+NoConn ~ 5750 3300
+NoConn ~ 5750 3400
+NoConn ~ 5750 3500
+NoConn ~ 5750 3600
+Wire Wire Line
+	3550 2250 3950 2250
+$Comp
+L Device:R R5
+U 1 1 5E889ABE
+P 3950 2650
+F 0 "R5" H 4020 2696 50  0000 L CNN
+F 1 "220R" H 4020 2605 50  0000 L CNN
+F 2 "" V 3880 2650 50  0001 C CNN
+F 3 "~" H 3950 2650 50  0001 C CNN
+	1    3950 2650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:LED D3
+U 1 1 5E88A106
+P 3950 3250
+F 0 "D3" V 3989 3133 50  0000 R CNN
+F 1 "LED" V 3898 3133 50  0000 R CNN
+F 2 "" H 3950 3250 50  0001 C CNN
+F 3 "~" H 3950 3250 50  0001 C CNN
+	1    3950 3250
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	3950 2250 3950 2500
+Connection ~ 3950 2250
+Wire Wire Line
+	3950 2250 4150 2250
+Wire Wire Line
+	3950 2800 3950 3100
+Wire Wire Line
+	3950 3400 3950 3800
+Wire Wire Line
+	3950 3800 3550 3800
+Connection ~ 3550 3800
+$Comp
+L Device:R R2
+U 1 1 5E88C0E2
+P 1750 2650
+F 0 "R2" H 1820 2696 50  0000 L CNN
+F 1 "4K7" H 1820 2605 50  0000 L CNN
+F 2 "" V 1680 2650 50  0001 C CNN
+F 3 "~" H 1750 2650 50  0001 C CNN
+	1    1750 2650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:LED D1
+U 1 1 5E88C8B2
+P 1750 3250
+F 0 "D1" V 1789 3133 50  0000 R CNN
+F 1 "LED" V 1698 3133 50  0000 R CNN
+F 2 "" H 1750 3250 50  0001 C CNN
+F 3 "~" H 1750 3250 50  0001 C CNN
+	1    1750 3250
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	1750 2250 1750 2500
+Connection ~ 1750 2250
+Wire Wire Line
+	1750 2250 1450 2250
+Wire Wire Line
+	1750 2800 1750 2950
+Wire Wire Line
+	1750 3400 1750 3800
+Connection ~ 1750 3800
+Wire Wire Line
+	1750 3800 1550 3800
+$Comp
+L Device:R R1
+U 1 1 5E88ED10
+P 1450 2650
+F 0 "R1" H 1520 2696 50  0000 L CNN
+F 1 "4K7" H 1520 2605 50  0000 L CNN
+F 2 "" V 1380 2650 50  0001 C CNN
+F 3 "~" H 1450 2650 50  0001 C CNN
+	1    1450 2650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1450 2500 1450 2250
+Connection ~ 1450 2250
+Wire Wire Line
+	1450 2250 1250 2250
+Wire Wire Line
+	1450 2800 1450 2950
+Wire Wire Line
+	1450 2950 1750 2950
+Connection ~ 1750 2950
+Wire Wire Line
+	1750 2950 1750 3100
+Text GLabel 5550 2900 0    50   Input ~ 0
+IndSens
+Text GLabel 5550 3000 0    50   Input ~ 0
+LightSens
+Text GLabel 5550 2500 0    50   Output ~ 0
+BottleLED
+Text GLabel 5550 2600 0    50   Output ~ 0
+CapLED
+Text GLabel 5550 2700 0    50   Output ~ 0
+AlarmLED
+Wire Wire Line
+	5750 2500 5550 2500
+Wire Wire Line
+	5750 2600 5550 2600
+Wire Wire Line
+	5750 2700 5550 2700
+Wire Wire Line
+	5750 2800 5550 2800
+Wire Wire Line
+	5750 2900 5550 2900
+Wire Wire Line
+	5750 3000 5550 3000
+Wire Wire Line
+	5750 3100 5550 3100
+$Comp
+L Connector:Conn_01x03_Male J1
+U 1 1 5E950515
+P 10150 1450
+F 0 "J1" H 10300 1150 50  0000 R CNN
+F 1 "IndSensor" H 10400 1250 50  0000 R CNN
+F 2 "" H 10150 1450 50  0001 C CNN
+F 3 "~" H 10150 1450 50  0001 C CNN
+	1    10150 1450
+	-1   0    0    1   
+$EndComp
+$Comp
+L power:+24V #PWR08
+U 1 1 5E955423
+P 8600 900
+F 0 "#PWR08" H 8600 750 50  0001 C CNN
+F 1 "+24V" H 8615 1073 50  0000 C CNN
+F 2 "" H 8600 900 50  0001 C CNN
+F 3 "" H 8600 900 50  0001 C CNN
+	1    8600 900 
+	1    0    0    -1  
+$EndComp
+Text Label 10250 1350 0    50   ~ 0
+Bruin
+Text Label 10250 1450 0    50   ~ 0
+Blauw
+Text Label 10250 1550 0    50   ~ 0
+Zwart
+$Comp
+L power:GND #PWR09
+U 1 1 5E95896A
+P 8300 5700
+F 0 "#PWR09" H 8300 5450 50  0001 C CNN
+F 1 "GND" H 8305 5527 50  0000 C CNN
+F 2 "" H 8300 5700 50  0001 C CNN
+F 3 "" H 8300 5700 50  0001 C CNN
+	1    8300 5700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8300 1450 8500 1450
+$Comp
+L Device:R R6
+U 1 1 5E959FAF
+P 9700 1550
+F 0 "R6" V 9900 1550 50  0000 C CNN
+F 1 "1K" V 9800 1550 50  0000 C CNN
+F 2 "" V 9630 1550 50  0001 C CNN
+F 3 "~" H 9700 1550 50  0001 C CNN
+	1    9700 1550
+	0    1    1    0   
+$EndComp
+Text GLabel 9000 1550 0    50   Input ~ 0
+IndSens
+Wire Wire Line
+	9000 1550 9250 1550
+$Comp
+L Connector:Conn_01x03_Male J2
+U 1 1 5E95C69C
+P 10150 2150
+F 0 "J2" H 10300 1850 50  0000 R CNN
+F 1 "LightSensor" H 10400 1950 50  0000 R CNN
+F 2 "" H 10150 2150 50  0001 C CNN
+F 3 "~" H 10150 2150 50  0001 C CNN
+	1    10150 2150
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	9950 2050 8600 2050
+Wire Wire Line
+	9950 2150 8500 2150
+Wire Wire Line
+	8500 2150 8500 1450
+Wire Wire Line
+	8600 900  8600 1350
+Wire Wire Line
+	8600 1350 9950 1350
+Connection ~ 8600 1350
+Wire Wire Line
+	8600 1350 8600 2050
+Wire Wire Line
+	8500 1450 9950 1450
+Connection ~ 8500 1450
+Wire Wire Line
+	9850 1550 9950 1550
+Text Label 10250 2050 0    50   ~ 0
+Bruin
+Text Label 10250 2150 0    50   ~ 0
+Blauw
+Text Label 10250 2250 0    50   ~ 0
+Zwart
+$Comp
+L Device:R R8
+U 1 1 5E972630
+P 9250 1100
+F 0 "R8" V 9450 1100 50  0000 C CNN
+F 1 "10K" V 9350 1100 50  0000 C CNN
+F 2 "" V 9180 1100 50  0001 C CNN
+F 3 "~" H 9250 1100 50  0001 C CNN
+	1    9250 1100
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	9250 1250 9250 1550
+Connection ~ 9250 1550
+Wire Wire Line
+	9250 1550 9550 1550
+$Comp
+L power:+5V #PWR010
+U 1 1 5E974D50
+P 9250 900
+F 0 "#PWR010" H 9250 750 50  0001 C CNN
+F 1 "+5V" H 9265 1073 50  0000 C CNN
+F 2 "" H 9250 900 50  0001 C CNN
+F 3 "" H 9250 900 50  0001 C CNN
+	1    9250 900 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9250 900  9250 950 
+$Comp
+L Device:R R9
+U 1 1 5E979255
+P 9700 2250
+F 0 "R9" V 9900 2250 50  0000 C CNN
+F 1 "47K" V 9800 2250 50  0000 C CNN
+F 2 "" V 9630 2250 50  0001 C CNN
+F 3 "~" H 9700 2250 50  0001 C CNN
+	1    9700 2250
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R7
+U 1 1 5E979748
+P 8800 2450
+F 0 "R7" V 8600 2450 50  0000 C CNN
+F 1 "10K" V 8700 2450 50  0000 C CNN
+F 2 "" V 8730 2450 50  0001 C CNN
+F 3 "~" H 8800 2450 50  0001 C CNN
+	1    8800 2450
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	9550 2250 9250 2250
+Wire Wire Line
+	9850 2250 9950 2250
+Text GLabel 9000 2250 0    50   Input ~ 0
+LightSens
+Wire Wire Line
+	9000 2250 9250 2250
+Connection ~ 9250 2250
+Wire Wire Line
+	9250 2450 8950 2450
+Wire Wire Line
+	9250 2250 9250 2450
+Wire Wire Line
+	8300 1450 8300 2450
+Wire Wire Line
+	8650 2450 8300 2450
+Connection ~ 8300 2450
+Wire Wire Line
+	8300 2450 8300 2900
+$Comp
+L Connector:Conn_01x03_Male J3
+U 1 1 5E9A3F58
+P 10150 3000
+F 0 "J3" H 10300 2700 50  0000 R CNN
+F 1 "Relais" H 10400 2800 50  0000 R CNN
+F 2 "" H 10150 3000 50  0001 C CNN
+F 3 "~" H 10150 3000 50  0001 C CNN
+	1    10150 3000
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	9950 2900 8300 2900
+Connection ~ 8300 2900
+Wire Wire Line
+	8300 2900 8300 3700
+Text GLabel 9000 3100 0    50   Output ~ 0
+Relay
+Wire Wire Line
+	9000 3100 9950 3100
+$Comp
+L power:+5V #PWR011
+U 1 1 5E9A9D30
+P 9550 2800
+F 0 "#PWR011" H 9550 2650 50  0001 C CNN
+F 1 "+5V" H 9565 2973 50  0000 C CNN
+F 2 "" H 9550 2800 50  0001 C CNN
+F 3 "" H 9550 2800 50  0001 C CNN
+	1    9550 2800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9550 2800 9550 3000
+Wire Wire Line
+	9550 3000 9950 3000
+$Comp
+L Connector:Conn_01x02_Male J4
+U 1 1 5E9AB758
+P 10150 3700
+F 0 "J4" H 10300 3400 50  0000 R CNN
+F 1 "BottleLED" H 10400 3500 50  0000 R CNN
+F 2 "" H 10150 3700 50  0001 C CNN
+F 3 "~" H 10150 3700 50  0001 C CNN
+	1    10150 3700
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:R R10
+U 1 1 5E9ABD33
+P 9700 3700
+F 0 "R10" V 9900 3700 50  0000 C CNN
+F 1 "220R" V 9800 3700 50  0000 C CNN
+F 2 "" V 9630 3700 50  0001 C CNN
+F 3 "~" H 9700 3700 50  0001 C CNN
+	1    9700 3700
+	0    1    1    0   
+$EndComp
+Text GLabel 9000 4500 0    50   Output ~ 0
+AlarmLED
+Wire Wire Line
+	9000 3600 9950 3600
+Wire Wire Line
+	9950 3700 9850 3700
+Wire Wire Line
+	9550 3700 8300 3700
+Connection ~ 8300 3700
+$Comp
+L Connector:Conn_01x02_Male J5
+U 1 1 5E9B64BD
+P 10150 4150
+F 0 "J5" H 10300 3850 50  0000 R CNN
+F 1 "CapLED" H 10400 3950 50  0000 R CNN
+F 2 "" H 10150 4150 50  0001 C CNN
+F 3 "~" H 10150 4150 50  0001 C CNN
+	1    10150 4150
+	-1   0    0    1   
+$EndComp
+Text GLabel 9000 3600 0    50   Output ~ 0
+BottleLED
+Text GLabel 9000 4050 0    50   Output ~ 0
+CapLED
+$Comp
+L Device:R R11
+U 1 1 5E9BEA31
+P 9700 4150
+F 0 "R11" V 9900 4150 50  0000 C CNN
+F 1 "220R" V 9800 4150 50  0000 C CNN
+F 2 "" V 9630 4150 50  0001 C CNN
+F 3 "~" H 9700 4150 50  0001 C CNN
+	1    9700 4150
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R12
+U 1 1 5E9BEE25
+P 9700 4600
+F 0 "R12" V 9900 4600 50  0000 C CNN
+F 1 "220R" V 9800 4600 50  0000 C CNN
+F 2 "" V 9630 4600 50  0001 C CNN
+F 3 "~" H 9700 4600 50  0001 C CNN
+	1    9700 4600
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector:Conn_01x02_Male J6
+U 1 1 5E9BF12D
+P 10150 4600
+F 0 "J6" H 10300 4300 50  0000 R CNN
+F 1 "AlarmLED" H 10400 4400 50  0000 R CNN
+F 2 "" H 10150 4600 50  0001 C CNN
+F 3 "~" H 10150 4600 50  0001 C CNN
+	1    10150 4600
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	9000 4050 9950 4050
+Wire Wire Line
+	9000 4500 9950 4500
+Wire Wire Line
+	9550 4600 8300 4600
+Wire Wire Line
+	8300 3700 8300 4150
+Connection ~ 8300 4600
+Wire Wire Line
+	9950 4600 9850 4600
+Wire Wire Line
+	9950 4150 9850 4150
+Wire Wire Line
+	9550 4150 8300 4150
+Connection ~ 8300 4150
+Wire Wire Line
+	8300 4150 8300 4600
+$Comp
+L Connector:Conn_01x02_Male J7
+U 1 1 5E9D47EB
+P 10150 5100
+F 0 "J7" H 10300 4800 50  0000 R CNN
+F 1 "Reset" H 10400 4900 50  0000 R CNN
+F 2 "" H 10150 5100 50  0001 C CNN
+F 3 "~" H 10150 5100 50  0001 C CNN
+	1    10150 5100
+	-1   0    0    1   
+$EndComp
+Text GLabel 9000 5000 0    50   Input ~ 0
+Reset
+Wire Wire Line
+	9000 5000 9950 5000
+Wire Wire Line
+	8300 4600 8300 5100
+Wire Wire Line
+	8300 5100 9950 5100
+Connection ~ 8300 5100
+Wire Wire Line
+	8300 5100 8300 5700
+Text GLabel 5550 2800 0    50   Input ~ 0
+Reset
+Text GLabel 5550 3100 0    50   Output ~ 0
+Relay
+$EndSCHEMATC
